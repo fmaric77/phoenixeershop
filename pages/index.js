@@ -125,7 +125,8 @@ export default function Home() {
                                 </p>
                                 <p>{selectedProduct.product_type}</p>
                                 <p >{selectedProduct.description}</p>
-                                <button className="buyButton" onClick={(event) => handleBuyClick(event, product)}>Buy</button>
+                                <button className="buyButton" onClick={(event) => handleBuyClick(event, selectedProduct)}>Buy</button>
+
                                 {/* <button onClick={() => addToCart(selectedProduct)}>Add to Cart</button>      */}
                                                                               </div>
                             <div className="images-grid">
