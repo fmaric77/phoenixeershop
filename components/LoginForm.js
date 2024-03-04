@@ -5,8 +5,8 @@ import styles from '../styles/LoginForm.module.css';
 
 export default function LoginForm() {
     const { setUser } = useContext(UserContext);
-    const [username, setUsername] = useState(process.env.DB_USERNAME);
-    const [password, setPassword] = useState(process.env.DB_PASSWORD);
+    const [username, setUsername] = useState("test");
+    const [password, setPassword] = useState("test");
     const router = useRouter();
 
     const handleSubmit = async (e) => {
