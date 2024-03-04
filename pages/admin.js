@@ -3,7 +3,6 @@ import { ProductContext } from '../ProductContext';
 import { UserContext } from '../UserContext';
 import { useRouter } from 'next/router';
 import Stripe from 'stripe';
-import { v4 as uuidv4 } from 'uuid';
 const stripe = new Stripe('sk_test_51I4qYqLLD1wwSIh4pGFp9GuqYmbV7lL8jgLVdMZJ7XADJ6HyAk61E8eBHP7P2WMPedoq1g78xLWxbqvb1hb1HXN800l5nI7G8o');
 
 // Fake localStorage implementation
@@ -33,6 +32,8 @@ export default function Admin() {
     const [editingProduct, setEditingProduct] = useState(null);
     const [showProductModal, setShowProductModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Add this line
+
 
     // Load products from localStorage when component mounts
     useEffect(() => {
@@ -50,8 +51,15 @@ export default function Admin() {
     useEffect(() => {
         if (!user) {
             router.push('/login');
+        } else {
+            setIsLoading(false); // Set loading to false when user is authenticated
         }
     }, [user, router]);
+
+    if (isLoading) {
+        return null; // or return a loading spinner
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
